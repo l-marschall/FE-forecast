@@ -2,7 +2,7 @@
 
 cross_mse = function(prediction, cross_periods, df) {
   p <- length(prediction)
-  if (cross_periods < p) {
+  if (cross_periods <= p) {
     prediction <- prediction[(p-cross_periods):p]
     target <- df[,1]
     n <- length(target)
