@@ -2,7 +2,7 @@ rm(list=ls())
 ##########################################################
 # FORECAST COMPETITION
 ##########################################################
-wd <- '/Users/jordi/Box/12F005 Financial Econometrics/forecast-competition/'
+wd <- '/'
 setwd(wd)
 data <- read.csv('forecast-competition-training.csv',header=T)
 # Need to forecast the TARGET variable
@@ -11,27 +11,19 @@ data <- read.csv('forecast-competition-training.csv',header=T)
 # in the panel
 
 ################ PREDICTION: #############
-# load libraries
-library("caret")
 
-prepProc <- function(df, method){
-  if (method == 'center'){
-    #center the data
-    preProc <- preProcess(df, method = c("center"))
-    df.centered <- predict(preProc, df)
-    return(df.centered)
-  }
-  
-  if (method =='scale'){
-    # Scale the data
-    preProc <- preProcess(df, method = c("scale"))
-    df.scaled <- predict(preProc, df)
-    return(df.scaled)
-  }
-  
-  # Rescale the data to a [0,1] range.
-  preProc <- preProcess(df, method = c("range"))
-  df.range <- predict(preProc, df)
-  return(df.range)
-}
+# Lasso for subset selection
+library(glmnet)
+X <- as.matrix(data[,2:50])
+target <- data[,1]
+lasso <- cv.glmnet(x = X, y=target)
+betaslas <- coef(lasso)
+# select relevant vars
+relev_vars <- data[,betaslas@i]
 
+# linear model with relevant variables AR(1) multivariate
+y <- target[2:500]
+X.lag1 <- as.matrix(relev_vars[1:499,])
+mod <- lm(y ~ X.lag1)
+
+y <- predict(object = mod, )
