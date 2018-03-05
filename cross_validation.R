@@ -13,7 +13,8 @@ cross_mse = function(prediction, cross_periods, df) {
     }
     avg_mse <- mean(mse)
     var_mse <- var(mse)
-    print(paste0('Average mse:', avg_mse), paste0('Variance of mse:', var_mse))
+    print(paste0('Mean:', round(avg_mse, digits = 4)))
+    print(paste0('Variance:', round(var_mse, digits = 4)))
   }
   else print('More cross_periods selected than available prediction periods!')
 }
