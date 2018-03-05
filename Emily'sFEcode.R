@@ -1,13 +1,8 @@
 rm(list=ls())
 library(caret)
 library(klaR)
-setwd("Dropbox/BGSE/DataScience/TERM_2/FE/Forecasting_Comp/")
-setwd("TERM_2/FE/Forecasting_Comp/")
-setwd("Forecasting_Comp/")
 source('tarch.R')
 df <- read.csv("forecast-competition-training.csv") # training data
-head(df)
-View(df)
 
 
 # -------------------------------------- ARMA(1,1) Model -------------------------------------- #
