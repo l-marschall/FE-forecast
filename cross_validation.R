@@ -7,7 +7,7 @@ cross_mse = function(prediction, cross_periods, df) {
     target <- df[,1]
     n <- length(target)
     target <- target[(n - cross_periods):n]
-    mse <- rep(0, p)
+    mse <- c()
     for (i in 1:cross_periods) {
       mse[i] <- (target[i] - prediction[i])**2 
     }
