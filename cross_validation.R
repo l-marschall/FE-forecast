@@ -1,7 +1,4 @@
-rm(list = ls())
-setwd('/home/laurits/Desktop/BGSE/Term 2/Financial Econometrics/FE-forecast')
-df <- read.csv('forecast-competition-training.csv')
-
+# cross validation function
 
 cross_mse = function(prediction, cross_periods, df) {
   p <- length(prediction)
