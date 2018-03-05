@@ -58,16 +58,16 @@ Hessian[i, j] = (garchLLH(x1)-garchLLH(x2)-garchLLH(x3)+garchLLH(x4))/
 (4*epsilon[i]*epsilon[j])
 }
 }
-cat("Log likelihood at MLEs: ","\n")
-print(-garchLLH(fit$par))
+#cat("Log likelihood at MLEs: ","\n")
+#print(-garchLLH(fit$par))
 # Step 6: Create and Print Summary Report:
 se.coef = sqrt(diag(solve(Hessian)))
 tval = fit$par/se.coef
 matcoef = cbind(fit$par, se.coef, tval, 2*(1-pnorm(abs(tval))))
 dimnames(matcoef) = list(names(tval), c(" Estimate",
 " Std. Error", " t value", "Pr(>|t|)"))
-cat("\nCoefficient(s):\n")
-printCoefmat(matcoef, digits = 6, signif.stars = TRUE)
+#cat("\nCoefficient(s):\n")
+#printCoefmat(matcoef, digits = 6, signif.stars = TRUE)
 # compute output
 est=fit$par
 mu = est[1]; omega = est[2]; alpha = est[3]; gam1=est[4]; beta = est[5]
